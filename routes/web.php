@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Place;
 use App\Models\Thing;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('/things', function(){
     return view('things', [
@@ -26,33 +30,13 @@ Route::get('/things', function(){
         ]);
 });
 
-// Route::get('/things', function(){
-//     return view('things', [
-//         'heading'=> 'Things list',
-//         // 'things'=> Thing::all()
-//         'things'=> [[
-//             'id'=> '1',
-//             'name'=> 'Pen',
-//             'description'=> 'An instrument for writing or 
-//             drawing with ink, typically consisting of a 
-//             metal nib or ball, or a nylon tip, fitted into a metal 
-//             or plastic holder.',
-//             'wrnt'=> '01.01.2025',
-//             'master'=> 'user1',
-//             'dimension'=> '',
-//         ], [
-//             'id'=> '2',
-//             'name'=> 'Paper', 
-//             'description'=> 'Paper is a thin sheet material 
-//             produced by mechanically or chemically processing cellulose fibres, 
-//             used to printing, painting, graphics, signage, design, packaging, 
-//             decorating, writing, and cleaning.', 
-//             'wrnt'=> '01.01.2025',
-//             'master'=> 'user1',
-//             'dimension'=> '',
-//         ]]
-//     ]);
-// });
+Route::get('/places', function(){
+    return view('places', [
+        'heading'=> 'Places list',
+        'places'=> Place::all()
+        ]);
+});
+
 // Route::get('/res', function () {
 //     return response('<h1>hello<\h1>', 200)
 //     ->header('Content-Type', 'text/plain')

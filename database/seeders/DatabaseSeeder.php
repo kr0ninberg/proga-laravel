@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Thing::create([
-            'id'=> '1',
             'name'=> 'Pen',
             'description'=> 'An instrument for writing or 
             drawing with ink, typically consisting of a 
@@ -27,7 +26,6 @@ class DatabaseSeeder extends Seeder
             'dimension'=> '',
         ]);
         Thing::create([
-            'id'=> '2',
             'name'=> 'Paper', 
             'description'=> 'Paper is a thin sheet material 
             produced by mechanically or chemically processing cellulose fibres, 
@@ -38,7 +36,6 @@ class DatabaseSeeder extends Seeder
             'dimension'=> '',
         ]);
         Place::create([
-            'id'=> '1',
             'name'=> 'Park',
             'description' => 'A large public garden or area of land used 
             for recreation.',
@@ -46,7 +43,6 @@ class DatabaseSeeder extends Seeder
             'work'=> 'false'
         ]);
         Place::create([
-            'id'=> '2',
             'name'=> 'Universal workshop',
             'description' => 'A room or building in which goods are 
             manufactured or repaired.',
@@ -54,7 +50,14 @@ class DatabaseSeeder extends Seeder
             'work'=> 'false'
         ]);
 
+
         \App\Models\User::factory(5)->create();
+
+        Thing::factory(3)->create();
+        Place::factory(3)->create();
+        // Place::factory(1)->create([
+        //     'repair' => 'true',
+        // ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

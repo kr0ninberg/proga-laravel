@@ -25,5 +25,7 @@ Route::get('/', function () {
 // });
 
 // Route::get('/posts/{id}', function($id){
+//     dd('value');
+//     ddd('value');
 //     return response('post ' . $id);
-// });
+// })->where('id', '[0-9]+');

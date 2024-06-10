@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             metal nib or ball, or a nylon tip, fitted into a metal 
             or plastic holder.',
             'wrnt'=> '01.01.2025',
-            'master'=> 'user1',
+            'creator'=> 'user1',
             'dimension'=> '',
         ]);
         Thing::create([
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             used to printing, painting, graphics, signage, design, packaging, 
             decorating, writing, and cleaning.', 
             'wrnt'=> '01.01.2025',
-            'master'=> 'user1',
+            'creator'=> 'user1',
             'dimension'=> '',
         ]);
         Place::create([

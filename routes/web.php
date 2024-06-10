@@ -24,14 +24,14 @@ Route::get('/', function () {
 });
 
 Route::get('/things', function(){
-    return view('things', [
+    return view('things.things', [
         'heading'=> 'Things list',
         'things'=> Thing::all()
         ]);
 });
 
 Route::get('/places', function(){
-    return view('places', [
+    return view('places.places', [
         'heading'=> 'Places list',
         'places'=> Place::all()
         ]);

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description'); // change type
             $table->date('wrnt');
-            $table->string('master');
+            $table->string('creator');
+            // $table->integer('amount');
             $table->string('dimension');
             $table->timestamps();
         });

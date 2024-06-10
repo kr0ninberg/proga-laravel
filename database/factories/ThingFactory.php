@@ -20,7 +20,7 @@ class ThingFactory extends Factory
             'name' => $this->faker->sentence(1),
             'description'=> $this->faker->paragraph(5),
             'wrnt' => $this->faker->date(),
-            'master' => 'user1',
+            'creator' => 'user1',
             'dimension' => ''
         ];
     }

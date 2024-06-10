@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ThingsController;
 use App\Models\Place;
 use App\Models\Thing;
 use Illuminate\Support\Facades\Route;
@@ -23,19 +25,29 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/things', function(){
-    return view('things.things', [
-        'heading'=> 'Things list',
-        'things'=> Thing::all()
-        ]);
-});
+$controllerPrefix = '\\App\\Http\\Controllers\\';
+Route::resource('places', $controllerPrefix.'PlacesController');
+Route::resource('things', $controllerPrefix.'ThingsController');
 
-Route::get('/places', function(){
-    return view('places.places', [
-        'heading'=> 'Places list',
-        'places'=> Place::all()
-        ]);
-});
+Route::get('/things', [ThingsController::class,'index']);
+
+// Legacy
+
+// Route::get('/places', [PlacesController::class,'index']);
+
+// Route::get('/things', function(){
+//     return view('things.things', [
+//         'heading'=> 'Things list',
+//         'things'=> Thing::all()
+//         ]);
+// });
+
+// Route::get('/places', function(){
+//     return view('places.places', [
+//         'heading'=> 'Places list',
+//         'places'=> Place::all()
+//         ]);
+// });
 
 // Route::get('/res', function () {
 //     return response('<h1>hello<\h1>', 200)

@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(5)->create();
 
-        Thing::factory(3)->create();
-        Place::factory(3)->create();
+        Thing::factory(13)->create();
+        Place::factory(13)->create();
         // Place::factory(1)->create([
         //     'repair' => 'true',
         // ]);

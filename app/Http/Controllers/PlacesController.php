@@ -45,8 +45,8 @@ class PlacesController extends Controller
         $place = new Place;
         $place->name = $request->name;
         $place->description = $request->description;
-        $place->repair = $request->repair;
-        $place->work = $request->work;
+        $place->repair = $request->boolean($request->repair);
+        $place->work = $request->boolean($request->work);
         $place->save();
         return redirect('/places')->with('success','Place created');
     }

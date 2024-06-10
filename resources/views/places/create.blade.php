@@ -20,13 +20,15 @@ $controllerPrefix = '\\App\\Http\\Controllers\\';
     </div>
     <div class="form-group">
         {{Form::label('title', 'Is repair place')}}
-        {{Form::text('repair', '', ['class' => 'form-control', 
-        'placeholder' => 'true/false'])}}
+        {{-- {{Form::text('repair', '', ['class' => 'form-control', 
+        'placeholder' => 'true/false'])}} --}}
+        {{Form::checkbox('repair')}}
     </div>
     <div class="form-group">
         {{Form::label('title', 'Is work place')}}
-        {{Form::text('work', '', ['class' => 'form-control', 
-        'placeholder' => 'true/false'])}}
+        {{-- {{Form::text('work', '', ['class' => 'form-control', 
+        'placeholder' => 'true/false'])}} --}}
+        {{Form::checkbox('work')}}
     </div>
 
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}

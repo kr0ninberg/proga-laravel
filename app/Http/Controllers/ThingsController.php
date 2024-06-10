@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Thing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ThingsController extends Controller
 {
@@ -24,7 +26,7 @@ class ThingsController extends Controller
     public function create()
     {
         //
-        return view('things.create');
+        return view('things.create', ['users' => DB::select('SELECT name FROM users')]);
     }
 
     /**

@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Place;
 use App\Models\Thing;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -50,8 +52,15 @@ class DatabaseSeeder extends Seeder
             'work'=> 'false'
         ]);
 
+        User::create([
+            'name' => 'root',
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => 'root',
+            'remember_token' => Str::random(10),
+        ]);
 
-        \App\Models\User::factory(5)->create();
+        User::factory(5)->create();
 
         Thing::factory(13)->create();
         Place::factory(13)->create();

@@ -14,7 +14,7 @@ class ThingsController extends Controller
     {
         return view('things.index', [
             'heading'=> 'Things list',
-            'things'=> Thing::orderBy('id', 'asc')->paginate(4)
+            'things'=> Thing::orderBy('updated_at', 'desc')->paginate(4)
         ]);
     }
 
@@ -24,6 +24,7 @@ class ThingsController extends Controller
     public function create()
     {
         //
+        return view('things.create');
     }
 
     /**
@@ -32,6 +33,20 @@ class ThingsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request , [
+            'name'=> 'required|unique:things,name',
+            'wrnt'=> 'date',
+            'creator'=> 'required|exists:users,name'
+            ]); 
+        $thing = new Thing;
+        $thing->name = $request->name;
+        $thing->description = $request->description;
+        $thing->wrnt = $request->wrnt;
+        $thing->creator = $request->creator;
+        $thing->dimension = '';
+        $thing->save();
+        return redirect('/things')->with('success','Thing created');
+
     }
 
     /**

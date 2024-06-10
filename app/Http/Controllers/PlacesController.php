@@ -15,7 +15,7 @@ class PlacesController extends Controller
         return view('places.index', [
             'heading'=> 'Places list',
             // 'places'=> Place::all()
-            'places'=> Place::orderBy('id', 'asc')->paginate(5)
+            'places'=> Place::orderBy('updated_at', 'desc')->paginate(5)
         ]);
     }
 
@@ -37,6 +37,18 @@ class PlacesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request , [
+            'name'=> 'required|unique:places,name',
+            'repair'=> 'boolean',
+            'work'=> 'boolean'
+            ]); 
+        $place = new Place;
+        $place->name = $request->name;
+        $place->description = $request->description;
+        $place->repair = $request->repair;
+        $place->work = $request->work;
+        $place->save();
+        return redirect('/places')->with('success','Place created');
     }
 
     /**

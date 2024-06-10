@@ -27,7 +27,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/places">Places <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/things">Things</a>
             </li>
             </ul>
@@ -48,6 +48,7 @@
         <div id="app">
             <App />
         </div>
+        @include('smt.messages')
         @yield('content')
         </div>
     </main>

@@ -19,11 +19,12 @@
         <p>
             {{$place['description']}}
         </p>
+        <small>Last update at {{$place['created_at']}}</small>
     </a>
 @endforeach
 </div>
 
-    {{$places->links()}}
+{{$places->links()}}
   {{-- <a href="#" class="list-group-item list-group-item-action active">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">List group item heading</h5>

@@ -16,7 +16,8 @@
         </h2>
         <p>
             {{$thing['description']}}
-        </p>
+        </p>  
+        <small>Last update at {{$thing['created_at']}}</small>
     </a>
 @endforeach
 {{$things->links()}}

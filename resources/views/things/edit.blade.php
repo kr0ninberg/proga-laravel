@@ -5,24 +5,24 @@
 $controllerPrefix = '\\App\\Http\\Controllers\\';
 @endphp
 
-<h1>New thing</h1>
+<h1>Edit thing</h1>
 
-{!! Form::open(['action' => $controllerPrefix.'ThingsController@store']) !!}
+{!! Form::open(['action' => [$controllerPrefix.'ThingsController@update', $thing['id']]]) !!}
     <div class="form-group">
         {{Form::label('title', 'Name')}}
-        {{Form::text('name', '', ['class' => 'form-control', 
+        {{Form::text('name', $thing['name'], ['class' => 'form-control', 
         'placeholder' => 'thing name'])}}
     </div>
     <div class="form-group">
         {{Form::label('title', 'Description')}}
-        {{Form::textarea('description', '', ['class' => 'form-control', 
+        {{Form::textarea('description', $thing['description'], ['class' => 'form-control', 
         'placeholder' => 'desription text'])}}
     </div>
     <div class="form-group">
         {{Form::label('title', 'Waranty till ')}}
         {{-- {{Form::text('wrnt', '', ['class' => 'form-control', 
         'placeholder' => 'date'])}} --}}
-        {{Form::date('wrnt', \Carbon\Carbon::now())}}
+        {{Form::date('wrnt', $thing['wrnt'])}}
     </div>
     <div class="form-group">
         {{Form::label('title', 'Created by')}}
@@ -30,11 +30,16 @@ $controllerPrefix = '\\App\\Http\\Controllers\\';
         'placeholder' => 'creator name'])}} --}}
         <select class="custom-select" name="creator">
         @foreach ($users as $user)
-            <option value={{$user->name}}>{{$user->name}}</option>
+            @if($thing['creator'] == $user->name)
+                <option value={{$user->name}} selected>{{$user->name}}</option>
+            @else
+                <option value={{$user->name}}>{{$user->name}}</option>
+            @endif
         @endforeach
         </select>
     </div>
 
+    {{Form::hidden('_method','PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 {!! Form::close() !!}
 

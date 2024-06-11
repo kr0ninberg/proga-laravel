@@ -39,6 +39,7 @@ class PlacesController extends Controller
         //
         $this->validate($request , [
             'name'=> 'required|unique:places,name',
+            'description' => 'required',
             'repair'=> 'boolean',
             'work'=> 'boolean'
             ]); 
@@ -68,6 +69,8 @@ class PlacesController extends Controller
     public function edit(string $id)
     {
         //
+        $place = Place::find($id);
+        return view('places.edit', ['place' => $place]);
     }
 
     /**
@@ -75,7 +78,28 @@ class PlacesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $place = Place::find($id);
+        if($request['name'] == $place['name']){
+        $this->validate($request , [
+            'name'=> 'required',
+            'description' => 'required',
+            'repair'=> 'boolean',
+            'work'=> 'boolean'
+            ]); 
+        } else {
+        $this->validate($request , [
+            'name'=> 'required|unique:places,name',
+            'description' => 'required',
+            'repair'=> 'boolean',
+            'work'=> 'boolean'
+            ]); 
+        }
+        $place->name = $request->name; 
+        $place->description = $request->description;
+        $place->repair = $request->boolean($request->repair);
+        $place->work = $request->boolean($request->work);
+        $place->save();
+        return redirect('/places')->with('success','Place updated');
     }
 
     /**
@@ -83,6 +107,8 @@ class PlacesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $place = Place::find($id);
+        $place->delete();
+        return redirect('/places')->with('success','Place deleted');
     }
 }

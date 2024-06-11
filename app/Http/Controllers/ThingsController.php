@@ -37,6 +37,7 @@ class ThingsController extends Controller
         //
         $this->validate($request , [
             'name'=> 'required|unique:things,name',
+            'description' => 'required',
             'wrnt'=> 'date',
             'creator'=> 'required|exists:users,name'
             ]); 
@@ -67,6 +68,9 @@ class ThingsController extends Controller
     public function edit(string $id)
     {
         //
+        $thing = Thing::find($id);
+        return view('things.edit', ['thing' => $thing, 
+        'users' => DB::select('SELECT name FROM users')]);
     }
 
     /**
@@ -74,7 +78,31 @@ class ThingsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $thing = Thing::find($id);
+        if($request['name'] == $thing['name']){
+        $this->validate($request , [
+            'name'=> 'required',
+            'description' => 'required',
+            'wrnt'=> 'date',
+            'creator'=> 'required|exists:users,name'
+            ]); 
+        } else {
+        $this->validate($request , [
+            'name'=> 'required|unique:things,name',
+            'description' => 'required',
+            'wrnt'=> 'date',
+            'creator'=> 'required|exists:users,name'
+            ]); 
+        }
+        $thing->name = $request->name;
+        $thing->description = $request->description;
+        $thing->wrnt = $request->wrnt;
+        $thing->creator = $request->creator;
+        $thing->dimension = '';
+        $thing->save();
+        return redirect('/things')->with('success','Thing updated');
+
     }
 
     /**
@@ -83,5 +111,8 @@ class ThingsController extends Controller
     public function destroy(string $id)
     {
         //
+        $thing = Thing::find($id);
+        $thing->delete();
+        return redirect('/things')->with('success','Thing deleted');
     }
 }

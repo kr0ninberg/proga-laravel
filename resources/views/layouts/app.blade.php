@@ -87,6 +87,7 @@
             <div id="app">
                 <App />
             </div>
+            @include('smt.messages')
             @yield('content')
         </div>
         </main>

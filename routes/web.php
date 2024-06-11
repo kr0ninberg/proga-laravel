@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\ThingsController;
+use App\Http\Controllers\UseModelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::resource('things', $controllerPrefix.'ThingsController');
 
 Route::get('/things', [ThingsController::class,'index']);
 
+Route::get('/uses', [UseModelController::class,'index']);
+Route::post('/uses', [UseModelController::class,'store']);
+Route::get('/uses/create', [UseModelController::class,'create']);
+Route::get('/uses/{id}', [UseModelController::class,'show']);
+Route::put('/uses/{id}', [UseModelController::class,'update']);
+Route::delete('/uses/{id}', [UseModelController::class,'destroy']);
+Route::get('/uses/{id}/edit', [UseModelController::class,'edit']);
 // Legacy
 
 // Route::get('/places', [PlacesController::class,'index']);

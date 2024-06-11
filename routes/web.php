@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PlacesController;
-use App\Http\Controllers\ThingsController;
 use App\Models\Place;
 use App\Models\Thing;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ThingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::get('/things', [ThingsController::class,'index']);
 //     ddd('value');
 //     return response('post ' . $id);
 // })->where('id', '[0-9]+');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
 
 <a href="/places/{{$place['id']}}" class="list-group-item list-group-item-action">
